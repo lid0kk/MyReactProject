@@ -66,7 +66,7 @@ Admins can:
 
 ```bash
 # Clone the project
-git clone https://github.com/YOUR_USERNAME/scholarship-match.git
+git clone https://github.com/lid0kk/MyReactProject.git
 cd scholarship-match
 
 # Install dependencies
