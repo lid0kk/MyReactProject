@@ -1,12 +1,82 @@
-# React + Vite
+# 🎓 Scholarship Match
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern scholarship matching platform that helps students easily find scholarships that suit their personal profile.
 
-Currently, two official plugins are available:
+🌐 [Live Demo on Firebase Hosting](https://schoolrship-132e8.web.app)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 📌 Project Overview
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Scholarship Match is a web application built with **React (Vite)** and **Firebase** that allows students to:
+- Fill out a smart matching form
+- Browse relevant scholarships
+- Save favorites
+- Apply directly
+- Manage a personal profile
+
+Admins can:
+- Add/edit/delete scholarships
+- View usage analytics
+- Add test users/scholarships
+- Manage everything via a dedicated dashboard
+
+---
+
+## 🚀 Features
+
+### 👤 For Students
+- Register and login (Firebase Auth)
+- Fill in personal information
+- Get scholarship matches
+- Save and view favorite scholarships
+- Edit personal profile
+- Apply for scholarships
+
+### 🛠️ For Admins
+- Dashboard with full CRUD for scholarships
+- User management (with roles)
+- Analytics: gender, fields, institutions
+- Add mock data for testing
+
+### 📊 Analytics Dashboard
+- Registered users count
+- Active scholarships
+- Bar charts by:
+  - Field of study
+  - Institution
+  - Gender
+
+---
+
+## 🧰 Tech Stack
+
+| Tech        | Description |
+|-------------|-------------|
+| **React (Vite)** | Modern SPA frontend |
+| **Firebase**     | Auth, Firestore DB, Hosting |
+| **React Router** | Page routing |
+| **Toastify**     | Notifications |
+| **Recharts**     | Graphs & Analytics |
+| **CSS**          | Custom modular styles (no Bootstrap) |
+
+---
+
+## 📦 Installation & Usage
+
+```bash
+# Clone the project
+git clone https://github.com/YOUR_USERNAME/scholarship-match.git
+cd scholarship-match
+
+# Install dependencies
+npm install
+
+# Run locally
+npm run dev
+
+# Build for production
+npm run build
+
+# Deploy to Firebase Hosting
+firebase deploy
