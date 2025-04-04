@@ -1,0 +1,82 @@
+.scholarship-detail-container {
+    direction: rtl;
+    font-family: "Segoe UI", sans-serif;
+    padding: 2rem 1rem;
+    background-color: #f8f9fa;
+    min-height: 100vh;
+  }
+  
+  .scholarship-card {
+    background-color: white;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  }
+  
+  .scholarship-card h2 {
+    color: #0d6efd;
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+  }
+  
+  .scholarship-card p {
+    margin: 0.4rem 0;
+    font-size: 1rem;
+    color: #333;
+  }
+  
+  .scholarship-card strong {
+    color: #222;
+  }
+  
+  .scholarship-actions {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+  }
+  
+  .btn-apply {
+    background-color: #198754;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 0.7rem 1.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .btn-apply:hover {
+    background-color: #157347;
+  }
+  
+  .btn-save {
+    background-color: white;
+    color: #0d6efd;
+    border: 2px solid #0d6efd;
+    border-radius: 10px;
+    padding: 0.7rem 1.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  .btn-save:hover {
+    background-color: #0d6efd;
+    color: white;
+  }
+  
+  .loading-message,
+  .error-message {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #777;
+    margin-top: 4rem;
+  }
+  
