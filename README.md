@@ -62,21 +62,5 @@ Admins can:
 
 ---
 
-## 📦 Installation & Usage
 
-```bash
-# Clone the project
-git clone https://github.com/lid0kk/MyReactProject.git
-cd scholarship-match
 
-# Install dependencies
-npm install
-
-# Run locally
-npm run dev
-
-# Build for production
-npm run build
-
-# Deploy to Firebase Hosting
-firebase deploy
