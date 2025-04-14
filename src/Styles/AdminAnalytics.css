@@ -2,7 +2,7 @@
     direction: rtl;
     padding: 2rem 1rem;
     font-family: "Segoe UI", sans-serif;
-    background-color: #f9fafb;
+    background: linear-gradient(135deg, #f8f9fa, #eef3ff);
     min-height: 100vh;
   }
   

@@ -36,6 +36,8 @@ export default function EditScholarship() {
           toast.error("המלגה לא נמצאה");
         }
       } catch (err) {
+        console.log(err);
+        
         toast.error("שגיאה בטעינת הנתונים");
       } finally {
         setLoading(false);
@@ -64,6 +66,8 @@ export default function EditScholarship() {
       toast.success("המלגה עודכנה בהצלחה!");
       navigate("/admin");
     } catch (err) {
+      console.log(err);
+      
       toast.error("שגיאה בשמירת השינויים");
     }
   };

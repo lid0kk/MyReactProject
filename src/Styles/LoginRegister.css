@@ -2,7 +2,7 @@
     direction: rtl;
     max-width: 450px;
     margin: 4rem auto;
-    background-color: #fff;
+    background: linear-gradient(135deg, #f8f9fa, #eef3ff);
     border-radius: 16px;
     padding: 2rem;
     box-shadow: 0 10px 24px rgba(0, 0, 0, 0.07);

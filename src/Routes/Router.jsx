@@ -25,7 +25,8 @@ export default function AppRouter() {
 
       <Routes>
     
-        <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
+
         <Route path="/login" element={<LoginRegister />} />
         <Route path="/register" element={<LoginRegister />} />
         <Route path="/search" element={<ProtectedRoute><SearchForm /></ProtectedRoute>} />

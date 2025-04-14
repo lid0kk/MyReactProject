@@ -92,13 +92,13 @@ export default function AdminAnalytics() {
       {Object.keys(institutions).length > 0 && (
         <div className="chart-section">
           <h4 className="chart-title">פילוח לפי מוסדות לימוד</h4>
-          <ResponsiveContainer width="100%" height={350}>
-            <BarChart data={toChartData(institutions)}>
+          <ResponsiveContainer width="100%" height={350} >
+            <BarChart data={toChartData(institutions)} barGap='0%' barCategoryGap='0%'>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="name" tick={{ fontSize: 14 }} />
               <YAxis tick={{ fontSize: 14  , dx: -30}}  domain={[0, 'dataMax + 5']} />
               <Tooltip />
-              <Bar dataKey="count" fill="#0d6efd">
+              <Bar dataKey="count" fill="#0d6efd" barSize={100}>
                 <LabelList dataKey="count" position="top" />
               </Bar>
             </BarChart>
@@ -110,13 +110,13 @@ export default function AdminAnalytics() {
         <div className="chart-section">
           <h4 className="chart-title">פילוח לפי תחום לימוד</h4>
           <ResponsiveContainer width="100%" height={350}>
-            <BarChart data={toChartData(fields)}>
+            <BarChart data={toChartData(fields)} barGap='0%' barCategoryGap='0%'>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="name" tick={{ fontSize: 14 }} />
               <YAxis tick={{ fontSize: 16, fill: "#333", dx: -30 }} domain={[0, 'dataMax + 5']} />
 
               <Tooltip />
-              <Bar dataKey="count" fill="#198754">
+              <Bar dataKey="count" fill="#198754" barSize={100}>
                 <LabelList dataKey="count" position="top" />
               </Bar>
             </BarChart>
@@ -128,12 +128,12 @@ export default function AdminAnalytics() {
         <div className="chart-section">
           <h4 className="chart-title">פילוח לפי מגדר</h4>
           <ResponsiveContainer width="100%" height={350}>
-            <BarChart data={toChartData(translateGenders(genders))}>
+            <BarChart data={toChartData(translateGenders(genders))} barGap='0%' barCategoryGap='0%' >
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="name" tick={{ fontSize: 14 }} />
               <YAxis tick={{ fontSize: 14 , dx: -30 }} domain={[0, 'dataMax + 5']}  />
               <Tooltip />
-              <Bar dataKey="count" fill="#ff6b6b">
+              <Bar dataKey="count" fill="#ff6b6b" barSize={100}>
                 <LabelList dataKey="count" position="top" />
               </Bar>
             </BarChart>

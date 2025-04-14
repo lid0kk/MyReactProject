@@ -39,7 +39,7 @@ export default function Navbar() {
 
   return (
     <nav className="navbar">
-      <Link className="navbar-brand" to="/">
+      <Link className="navbar-brand" to="/home">
         Scholarship Match
       </Link>
 
@@ -48,6 +48,7 @@ export default function Navbar() {
           <li className="nav-li"><Link className="nav-link" to="/search">חיפוש</Link></li>
           <li className="nav-li"><Link className="nav-link" to="/profile">פרופיל</Link></li>
           <li className="nav-li"><Link className="nav-link" to="/my-scholarships">שמורים</Link></li>
+          <li className="nav-li"><Link className="nav-link" to="/home">דף הבית</Link></li>
 
           {isAdmin && (
             <>
@@ -68,8 +69,8 @@ export default function Navbar() {
             </>
           ) : (
             <>
-              <li className="nav-li"><Link className="nav-link" to="/login">התחברות</Link></li>
-              <li className="nav-li"><Link className="nav-link" to="/register">הרשמה</Link></li>
+              <li className="nav-li"><Link className="nav-link" to="/login">התחברות / הרשמה</Link></li>
+           
             </>
           )}
         </ul>

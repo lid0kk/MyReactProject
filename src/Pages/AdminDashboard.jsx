@@ -97,7 +97,7 @@ export default function AdminDashboard() {
       <div className="admin-header">
         <h1>🎓 לוח ניהול המלגות</h1>
         <Link to="/admin/add" className="btn-add">
-          ➕ הוספת מלגה
+           הוספת מלגה  ➕
         </Link>
       </div>
 
