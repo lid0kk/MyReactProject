@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { db } from "../Firebase/Firebase";
 import { doc, getDoc, updateDoc, Timestamp } from "firebase/firestore";
 import { toast } from "react-toastify";
+import '../Styles/EditScholarship.css'
 
 export default function EditScholarship() {
   const { id } = useParams();
@@ -75,73 +76,57 @@ export default function EditScholarship() {
   if (loading) return <p className="text-center mt-5">טוען...</p>;
 
   return (
-    <div className="container py-5">
-      <h2 className="mb-4 text-center">עריכת מלגה</h2>
-
-      <form onSubmit={handleSubmit} className="mx-auto" style={{ maxWidth: "600px" }}>
-        <div className="mb-3">
-          <label className="form-label">שם המלגה</label>
-          <input
-            type="text"
-            name="name"
-            className="form-control"
-            value={form.name}
-            onChange={handleChange}
-            required
-          />
-        </div>
-
-        <div className="mb-3">
-          <label className="form-label">סכום</label>
-          <input
-            type="number"
-            name="amount"
-            className="form-control"
-            value={form.amount}
-            onChange={handleChange}
-            required
-          />
-        </div>
-
-        <div className="mb-3">
-          <label className="form-label">תאריך סיום</label>
-          <input
-            type="date"
-            name="deadline"
-            className="form-control"
-            value={form.deadline}
-            onChange={handleChange}
-            required
-          />
-        </div>
-
-        <div className="mb-3">
-          <label className="form-label">תקציר / תיאור</label>
-          <textarea
-            name="summary"
-            className="form-control"
-            rows="3"
-            value={form.summary}
-            onChange={handleChange}
-            required
-          />
-        </div>
-
-        <div className="mb-4">
-          <label className="form-label">דרישות הגשה</label>
-          <textarea
-            name="requirements"
-            className="form-control"
-            rows="2"
-            value={form.requirements}
-            onChange={handleChange}
-          />
-        </div>
-
-        <div className="d-grid">
-          <button type="submit" className="btn btn-success">שמור שינויים</button>
-        </div>
-      </form>
-    </div>
+    <div className="edit-scholarship-container">
+    <h2 className="edit-title">עריכת מלגה</h2>
+  
+    <form onSubmit={handleSubmit} className="edit-form">
+      <label>שם המלגה</label>
+      <input
+        type="text"
+        name="name"
+        value={form.name}
+        onChange={handleChange}
+        required
+      />
+  
+      <label>סכום</label>
+      <input
+        type="number"
+        name="amount"
+        value={form.amount}
+        onChange={handleChange}
+        required
+      />
+  
+      <label>תאריך סיום</label>
+      <input
+        type="date"
+        name="deadline"
+        value={form.deadline}
+        onChange={handleChange}
+        required
+      />
+  
+      <label>תקציר / תיאור</label>
+      <textarea
+        name="summary"
+        rows="3"
+        value={form.summary}
+        onChange={handleChange}
+        required
+      />
+  
+      <label>דרישות הגשה</label>
+      <textarea
+        name="requirements"
+        rows="2"
+        value={form.requirements}
+        onChange={handleChange}
+      />
+    <div className="btn-div">
+      <button type="submit" className="btn-save">שמור שינויים</button>
+      </div>
+    </form>
+  </div>
   );
 }

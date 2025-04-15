@@ -1,67 +1,81 @@
+/* AdminAnalytics.css */
+
 .admin-stats-container {
-    direction: rtl;
-    padding: 2rem 1rem;
-    font-family: "Segoe UI", sans-serif;
-    background: linear-gradient(135deg, #f8f9fa, #eef3ff);
-    min-height: 100vh;
-  }
-  
-  .admin-stats-title {
-    text-align: center;
-    font-size: 2rem;
-    color: #0d6efd;
-    margin-bottom: 2rem;
-  }
-  
+  direction: rtl;
+  padding: 2rem 1rem;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.admin-stats-title {
+  text-align: center;
+  font-size: 2rem;
+  color: #0d6efd;
+  margin-bottom: 2rem;
+}
+
+.stat-cards {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.stat-card {
+  background-color: white;
+  border-radius: 14px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  padding: 1.5rem 2rem;
+  flex: 1 1 280px;
+  max-width: 320px;
+  text-align: center;
+  transition: transform 0.3s;
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+}
+
+.stat-card h5 {
+  margin-bottom: 0.8rem;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.stat-card p {
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.chart-section {
+  margin-bottom: 3rem;
+}
+
+.chart-title {
+  text-align: end;
+  font-size: 1.3rem;
+  color: #333;
+  margin-bottom: 1rem;
+  padding-inline: 0.5rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
   .stat-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 1.5rem;
-    margin-bottom: 3rem;
+    flex-direction: column;
+    align-items: center;
   }
-  
+
   .stat-card {
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.06);
-    padding: 1.5rem;
-    text-align: center;
-    transition: transform 0.2s;
+    width: 100%;
+    max-width: 100%;
   }
-  
-  .stat-card:hover {
-    transform: translateY(-5px);
-  }
-  
-  .stat-card h5 {
-    font-size: 1.1rem;
-    color: #495057;
-    margin-bottom: 0.5rem;
-  }
-  
-  .stat-card p {
-    font-size: 2rem;
-    font-weight: bold;
-  }
-  
-  .chart-section {
-    margin-bottom: 3rem;
-    background: white;
-    border-radius: 12px;
-    padding: 1rem;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  }
-  
+
   .chart-title {
+    text-align: center;
     font-size: 1.2rem;
-    color: #333;
-    text-align: end;
-    margin-bottom: 1rem;
   }
-  
-  @media (max-width: 768px) {
-    .chart-title {
-      text-align: center;
-    }
-  }
-  
+}

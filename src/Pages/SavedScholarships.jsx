@@ -72,7 +72,7 @@ export default function SavedScholarships() {
 
   return (
     <div className="saved-container">
-      <h2 className="saved-title">💾 המלגות ששמרת</h2>
+      <h2 className="saved-title"> המלגות ששמרת 💾</h2>
 
       <div className="saved-grid">
         {saved.map((s) => (

@@ -70,7 +70,7 @@ export default function ScholarshipDetail() {
         )}
 
         <div className="scholarship-actions">
-          <button className="btn-apply">הגש מועמדות</button>
+          <button className="btn-apply">הגש מועמדות למלגה</button>
           <button className="btn-save" onClick={handleSave}>
             שמור לדשבורד שלי
           </button>
