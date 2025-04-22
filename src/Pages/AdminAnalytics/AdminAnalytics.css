@@ -1,0 +1,83 @@
+
+.admin-stats-container {
+  direction: rtl;
+  padding: 2rem 1rem;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+  text-align: center;
+}
+
+.admin-stats-title {
+  text-align: center;
+  font-size: 2rem;
+  color: #0d6efd;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.stat-cards {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.stat-card {
+  background-color: white;
+  border-radius: 14px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  padding: 1.5rem 2rem;
+  flex: 1 1 280px;
+  max-width: 320px;
+  text-align: center;
+  transition: transform 0.3s;
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+}
+
+.stat-card h5 {
+  margin-bottom: 0.8rem;
+  font-size: 1.1rem;
+  color: #333;
+  text-align: center;
+}
+
+.stat-card p {
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.chart-section {
+  margin-bottom: 3rem;
+}
+
+.chart-title {
+  text-align: end;
+  font-size: 1.3rem;
+  color: #333;
+  margin-bottom: 1rem;
+  padding-inline: 0.5rem;
+  text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .stat-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .stat-card {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .chart-title {
+    text-align: center;
+    font-size: 1.2rem;
+  }
+}
