@@ -2,7 +2,7 @@
 
 A modern scholarship matching platform that helps students easily find scholarships that suit their personal profile.
 
-🌐 [Live Demo on Firebase Hosting](https://schoolrship-132e8.web.app)
+🌐 [Live Demo on Firebase Hosting](https://schoolrship-132e8.web.app/home)
 
 ---
 
