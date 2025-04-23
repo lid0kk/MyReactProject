@@ -20,6 +20,14 @@
     padding: 0.5rem 1rem;
   }
   
+  .nav-link.active {
+    background-color: #0d6efd;
+    color: white ;
+    border-radius: 8px;
+    padding: 0.4rem 0.8rem;
+    transition: background-color 0.3s ease;
+  }
+  
   
   .navbar-brand {
     font-size: 1.7rem;
@@ -78,7 +86,6 @@
     color: #0d6efd;
   }
   
-  /* רספונסיביות למסך צר */
   @media (max-width: 768px) {
     .navbar {
       flex-direction: column;

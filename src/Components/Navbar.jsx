@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { auth, db } from "../Firebase/Firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useEffect, useState } from "react";
@@ -11,6 +11,7 @@ export default function Navbar() {
   const [fullName, setFullName] = useState("");
   const [isAdmin, setIsAdmin] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -33,9 +34,11 @@ export default function Navbar() {
 
   const handleLogout = async () => {
     await auth.signOut();
-    toast.success("!התנתקת בהצלחה ")
+    toast.success("!התנתקת בהצלחה ");
     navigate("/login");
   };
+
+  const isActive = (path) => location.pathname === path;
 
   return (
     <nav className="navbar">
@@ -45,16 +48,30 @@ export default function Navbar() {
 
       <div className="collapse-nav">
         <ul className="ul-nav">
-          <li className="nav-li"><Link className="nav-link" to="/search">חיפוש</Link></li>
-          <li className="nav-li"><Link className="nav-link" to="/profile">פרופיל</Link></li>
-          <li className="nav-li"><Link className="nav-link" to="/my-scholarships">שמורים</Link></li>
-          <li className="nav-li"><Link className="nav-link" to="/home">דף הבית</Link></li>
+          <li className="nav-li">
+            <Link className={`nav-link ${isActive("/search") ? "active" : ""}`} to="/search">חיפוש</Link>
+          </li>
+          <li className="nav-li">
+            <Link className={`nav-link ${isActive("/profile") ? "active" : ""}`} to="/profile">פרופיל</Link>
+          </li>
+          <li className="nav-li">
+            <Link className={`nav-link ${isActive("/my-scholarships") ? "active" : ""}`} to="/my-scholarships">שמורים</Link>
+          </li>
+          <li className="nav-li">
+            <Link className={`nav-link ${isActive("/home") ? "active" : ""}`} to="/home">דף הבית</Link>
+          </li>
 
           {isAdmin && (
             <>
-              <li className="nav-li"><Link className="nav-link" to="/admin">ניהול</Link></li>
-              <li className="nav-li"><Link className="nav-link" to="/admin/dashboard">דף סטטיסטיקות</Link></li>
-              <li className="nav-li"><Link className="nav-link" to="/seed"> הוספת מלגות ומשתמשים למערכת (זמני)</Link></li>
+              <li className="nav-li">
+                <Link className={`nav-link ${isActive("/admin") ? "active" : ""}`} to="/admin">ניהול</Link>
+              </li>
+              <li className="nav-li">
+                <Link className={`nav-link ${isActive("/admin/dashboard") ? "active" : ""}`} to="/admin/dashboard">דף סטטיסטיקות</Link>
+              </li>
+              <li className="nav-li">
+                <Link className={`nav-link ${isActive("/seed") ? "active" : ""}`} to="/seed">הוספת מלגות ומשתמשים</Link>
+              </li>
             </>
           )}
 
@@ -68,10 +85,9 @@ export default function Navbar() {
               </li>
             </>
           ) : (
-            <>
-              <li className="nav-li"><Link className="nav-link" to="/login">התחברות / הרשמה</Link></li>
-           
-            </>
+            <li className="nav-li">
+              <Link className={`nav-link ${isActive("/login") ? "active" : ""}`} to="/login">התחברות / הרשמה</Link>
+            </li>
           )}
         </ul>
       </div>
