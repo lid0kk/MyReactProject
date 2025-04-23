@@ -3,20 +3,17 @@ import { collection, getDocs } from "firebase/firestore";
 import "../AdminAnalytics/AdminAnalytics.css";
 import { db } from "../../Firebase/Firebase";
 import {
-  BarChart,
-  Bar,
+  LineChart,
+  Line,
   XAxis,
   YAxis,
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
-  LabelList,
+  Legend,
   PieChart,
   Pie,
-  Cell,
-  Legend,
-  LineChart,
-  Line
+  Cell
 } from "recharts";
 
 export default function AdminAnalytics() {
@@ -70,69 +67,65 @@ export default function AdminAnalytics() {
   };
 
   const toChartData = (obj) =>
-    Object.entries(obj).map(([name, count]) => ({ name, count }));
+    Object.entries(obj).map(([name, value]) => ({ name, value }));
 
   const COLORS = ["#0d6efd", "#198754", "#ff6b6b", "#ffc107", "#6610f2"];
 
   return (
     <div className="admin-stats-container">
-      <h2 className="admin-stats-title">📊 לוח בקרה – סטטיסטיקות מערכת</h2>
-
-      <div className="stat-cards enhanced">
-        <div className="stat-card glass">
-          <div className="icon-box">👥</div>
-          <div className="text-box">
-            <h5>משתמשים</h5>
-            <p className="stat-value primary">{users.length}</p>
-          </div>
-        </div>
-        <div className="stat-card glass">
-          <div className="icon-box">🎓</div>
-          <div className="text-box">
-            <h5>מלגות</h5>
-            <p className="stat-value success">{scholarships.length}</p>
-          </div>
-        </div>
-        <div className="stat-card glass">
-          <div className="icon-box">🏛️</div>
-          <div className="text-box">
-            <h5>מוסדות</h5>
-            <p className="stat-value secondary">{Object.keys(institutions).length}</p>
-          </div>
-        </div>
+      <div className="admin-stats-header centered">
+        <h2 className="admin-stats-title">📊 לוח בקרה – סטטיסטיקות מערכת</h2>
       </div>
 
-      {Object.keys(institutions).length > 0 && (
-        <div className="chart-section">
-          <h4 className="chart-title">📚 מוסדות לימוד – גרף עמודות</h4>
-          <ResponsiveContainer width="100%" height={300}>
-            <BarChart data={toChartData(institutions)} barGap={4} barCategoryGap={10}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="name" tick={{ fontSize: 12 , dy: 4 , dx: -35}} angle={0} interval={0} textAnchor="end" height={30} />
-              <YAxis tick={{ fontSize: 12 , dy: -5 , dx: -20 }} />
-              <Tooltip />
-              <Bar dataKey="count" fill="#0d6efd">
-                <LabelList dataKey="count" position="top" />
-              </Bar>
-            </BarChart>
-          </ResponsiveContainer>
-        </div>
-      )}
+      <div className="stat-cards modern-layout">
+        {[{ label: "משתמשים", icon: "👥", value: users.length, class: "primary" },
+          { label: "מלגות", icon: "🎓", value: scholarships.length, class: "success" },
+          { label: "מוסדות", icon: "🏛️", value: Object.keys(institutions).length, class: "secondary" },
+        ].map(({ label, icon, value, class: c }, i) => (
+          <div className={`stat-box shadow-card ${c}`} key={i}>
+            <div className="stat-icon-circle">{icon}</div>
+            <div className="stat-label-group">
+              <span className="stat-label-text">{label}</span>
+              <span className="stat-value-text">{value}</span>
+            </div>
+          </div>
+        ))}
+      </div>
 
-      {Object.keys(fields).length > 0 && (
-        <div className="chart-section">
-          <h4 className="chart-title">📈 תחומי לימוד – גרף קווים</h4>
+      {[institutions, fields].map((dataset, index) => (
+        <div key={index} className="chart-section">
+          <h4 className="chart-title">
+            {index === 0 && "📚 מוסדות לימוד – גרף קווים"}
+            {index === 1 && "📈 תחומי לימוד – גרף קווים"}
+          </h4>
           <ResponsiveContainer width="100%" height={300}>
-            <LineChart data={toChartData(fields)}barGap={4} barCategoryGap={10}>
+            <LineChart
+              data={toChartData(dataset)}
+              margin={{ top: 20, right: 40, left: 10, bottom: 60 }}
+            >
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="name" tick={{ fontSize: 12 , dy: 4 , dx: -20 }} interval={0}  textAnchor="end" height={60} />
-              <YAxis tick={{ fontSize: 12 , dy: -5 , dx: -20 }} />
+              <XAxis
+                dataKey="name"
+                tick={{ fontSize: 12, dy: 35, dx: -10 }}
+                angle={-25}
+                interval={0}
+                textAnchor="end"
+                height={90}
+              />
+              <YAxis tick={{ fontSize: 12, dx: -10 }} />
               <Tooltip />
-              <Line type="monotone" dataKey="count" stroke="#198754" strokeWidth={3} />
+              <Line
+                type="monotone"
+                dataKey="value"
+                stroke={index === 0 ? "#0d6efd" : "#198754"}
+                strokeWidth={3}
+                dot={{ r: 4 }}
+                activeDot={{ r: 6 }}
+              />
             </LineChart>
           </ResponsiveContainer>
         </div>
-      )}
+      ))}
 
       {Object.keys(genders).length > 0 && (
         <div className="chart-section">
@@ -141,12 +134,12 @@ export default function AdminAnalytics() {
             <PieChart>
               <Pie
                 data={toChartData(translateGenders(genders))}
-                dataKey="count"
+                dataKey="value"
                 nameKey="name"
                 cx="50%"
                 cy="50%"
                 outerRadius={90}
-                label
+                label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
               >
                 {toChartData(translateGenders(genders)).map((entry, index) => (
                   <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
