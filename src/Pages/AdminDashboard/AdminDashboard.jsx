@@ -87,7 +87,7 @@ export default function AdminDashboard() {
     return (
       <div className="loading-wrapper">
         <div className="spinner"></div>
-        <p className="loading-message">טוען דף ניהול...</p>
+        <p className="loading-message">...טוען דף ניהול</p>
       </div>
     );
   }
