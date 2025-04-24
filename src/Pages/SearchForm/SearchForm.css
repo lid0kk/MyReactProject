@@ -1,6 +1,5 @@
 .search-form-container {
     direction: rtl;
-    font-family: "Segoe UI", sans-serif;
     padding: 2rem 1rem;
     background: linear-gradient(135deg, #f8f9fa, #eef3ff);
     min-height: 100vh;
