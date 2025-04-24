@@ -66,7 +66,7 @@ export default function LoginRegister() {
     if (!formData.email) return toast.error("יש להזין אימייל לאיפוס סיסמה");
     try {
       await sendPasswordResetEmail(auth, formData.email);
-      toast.success("נשלחה הודעת איפוס למייל.");
+      toast.success(".נשלחה הודעת איפוס למייל")
     } catch (err) {
       toast.error("שגיאה באיפוס: " + err.message);
     }

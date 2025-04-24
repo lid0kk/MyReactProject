@@ -60,7 +60,7 @@ export default function UserProfile() {
     return (
       <div className="loading-wrapper">
         <div className="spinner"></div>
-        <p className="loading-message">טוען פרופיל...</p>
+        <p className="loading-message">...טוען פרופיל</p>
       </div>
     );
   }
