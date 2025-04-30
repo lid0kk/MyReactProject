@@ -8,20 +8,20 @@ export default function Home() {
       <img src={logo} alt="Scholarship Match Logo" className="home-logo" />
 
       <h1 className="home-title">
-        מצא את המלגה שמתאימה בדיוק לך 🎓
+        מצא את המלגה שמתאימה בדיוק לך 
       </h1>
 
       <p className="home-description">
-        השירות שיעזור לך למצוא את המלגה האידיאלית עבורך בהתאמה אישית לפי התחום, מוסד הלימוד והרקע שלך.
+      הדרך המהירה והפשוטה למצוא את המלגה שתפורה במיוחד עבורך — בהתאמה אישית לתחום הלימודים, המוסד האקדמי והרקע האישי שלך.   
       </p>
 
       <Link to="/search" className="home-start-btn">
-         התחל התאמה 🚀
+         התחל התאמה 
       </Link>
 
       <div className="home-links">
-        <Link to="/help" className="home-link-btn"> עזרה ❓</Link>
-        <Link to="/about" className="home-link-btn"> מידע כללי ℹ️</Link>
+        <Link to="/help" className="home-link-btn"> עזרה </Link>
+        <Link to="/about" className="home-link-btn"> מידע כללי </Link>
       </div>
     </div>
   );
