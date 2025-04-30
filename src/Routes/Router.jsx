@@ -1,7 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "../Pages/Home/Home";
 import LoginRegister from "../Pages/LoginRegister/LoginRegister";
-import SearchForm from "../Pages/SearchForm/SearchForm";
 import MatchResults from "../Pages/MatchResults/MatchResults";
 import ScholarshipDetail from "../Pages/ScholarshipDetail/ScholarshipDetail";
 import AdminDashboard from "../Pages/AdminDashboard/AdminDashboard";
@@ -16,6 +15,7 @@ import SavedScholarships from "../Pages/SavedScholarships/SavedScholarships";
 import About from "../Pages/About/About";
 import Help from "../Pages/Help/Help";
 import NotFound from "../Pages/NotFound/NotFound";
+import SearchForm from "../Pages/SearchForm/SearchForm";
 
 
 
@@ -25,7 +25,6 @@ export default function AppRouter() {
       <Navbar />
 
       <Routes>
-    
         <Route path="/home" element={<Home />} />
         <Route path="/*" element={<NotFound />} />
         <Route path="/login" element={<LoginRegister />} />

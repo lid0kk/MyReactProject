@@ -5,27 +5,89 @@ export default function SeedScholarships() {
   const handleSeedScholarships = async () => {
     const scholarships = [
       {
-        name: "מלגת נגב למצטיינים",
-        amount: 8000,
-        deadline: Timestamp.fromDate(new Date("2025-07-31")),
-        summary: "מלגה לסטודנטים בנגב בעלי מצוינות אקדמית",
-        requirements: "ממוצע מעל 90, תושבי הדרום",
+        name: "מלגת מצטייני אונו",
+        amount: 9000,
+        deadline: Timestamp.fromDate(new Date("2025-09-01")),
+        summary: "מלגה למצטיינים בקריית אונו בתחומי מדעי החברה",
+        requirements: "ממוצע מעל 88",
+        gender: "female",
+        field: "מנהל עסקים",
+        economicBackground: "low",
+        institution: "קריית אונו"
       },
       {
-        name: "מלגת מדעי המחשב",
+        name: "מלגת עולים חדשים",
+        amount: 7000,
+        deadline: Timestamp.fromDate(new Date("2025-08-15")),
+        summary: "מלגה לעולים חדשים מכל תחום לימוד",
+        requirements: "תעודת עולה",
+        economicBackground: "medium"
+      },
+      {
+        name: "מלגת הייטק לחרדים",
+        amount: 8500,
+        deadline: Timestamp.fromDate(new Date("2025-07-10")),
+        summary: "מלגה לסטודנטים חרדים בתחום ההייטק",
+        requirements: "שייכות למוסד חרדי והוכחת לימודים בתחום",
+        field: "מדעי המחשב",
+        gender: "male",
+        economicBackground: "low"
+      },
+      {
+        name: "מלגת רוטשילד",
+        amount: 12000,
+        deadline: Timestamp.fromDate(new Date("2025-06-30")),
+        summary: "מלגת הצטיינות כללית לסטודנטים מצטיינים",
+        requirements: "ממוצע מעל 92",
+      },
+      {
+        name: "מלגת נשים במדע",
         amount: 10000,
-        deadline: Timestamp.fromDate(new Date("2025-06-15")),
-        summary: "לסטודנטים בשנה ג' במדעי המחשב",
-        requirements: "ממוצע 85+, המלצות מרצים",
+        deadline: Timestamp.fromDate(new Date("2025-10-01")),
+        summary: "מלגה לנשים הלומדות תחומי מדעים מדויקים או הנדסה",
+        gender: "female",
+        field: "הנדסה רפואית"
       },
       {
-        name: "מלגת חד הוריים",
-        amount: 6000,
-        deadline: Timestamp.fromDate(new Date("2025-05-01")),
-        summary: "מלגה לסטודנטים חד הוריים בכל תחום לימוד",
-        requirements: "אישור חד הוריות, מצב סוציו־אקונומי",
+        name: "מלגת משפחות חד הוריות",
+        amount: 6500,
+        deadline: Timestamp.fromDate(new Date("2025-05-20")),
+        summary: "תמיכה לסטודנטים חד הוריים במוסדות אקדמיים מוכרים",
+        familyStatus: "single",
+        economicBackground: "low"
       },
+      {
+        name: "מלגת אקדמיה לכולם",
+        amount: 5000,
+        deadline: Timestamp.fromDate(new Date("2025-08-01")),
+        summary: "מלגה פתוחה לכל סטודנט עם רקע סוציו־אקונומי חלש",
+        economicBackground: "low"
+      },
+      {
+        name: "מלגת טכנולוגיה מתקדמת",
+        amount: 9500,
+        deadline: Timestamp.fromDate(new Date("2025-09-15")),
+        summary: "תמיכה לסטודנטים מצטיינים במדעי המחשב",
+        field: "מדעי המחשב"
+      },
+      {
+        name: "מלגת מצוינות באוניברסיטה העברית",
+        amount: 11000,
+        deadline: Timestamp.fromDate(new Date("2025-06-05")),
+        summary: "מלגה לסטודנטים עם הישגים באוניברסיטה העברית",
+        institution: "האוניברסיטה העברית",
+        economicBackground: "medium"
+      },
+      {
+        name: "מלגת מנהיגות לנשים",
+        amount: 8000,
+        deadline: Timestamp.fromDate(new Date("2025-07-25")),
+        summary: "מלגה לנשים עם פוטנציאל מנהיגות בתחום החברתי",
+        gender: "female",
+        field: "פוליטיקה"
+      }
     ];
+    
 
     try {
       for (const s of scholarships) {

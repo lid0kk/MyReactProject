@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import logo from '../../assets/Pictures/logo.png';
 
 export default function Home() {
+
+   
   return (
     <div className="home-container">
       <img src={logo} alt="Scholarship Match Logo" className="home-logo" />
