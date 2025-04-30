@@ -73,6 +73,7 @@ export default function LoginRegister() {
   };
 
   return (
+    <div className="auth-login">
     <div className="auth-container">
       <div className="auth-tabs">
         <button
@@ -151,6 +152,7 @@ export default function LoginRegister() {
           </button>
         </form>
       )}
+    </div>
     </div>
   );
 }

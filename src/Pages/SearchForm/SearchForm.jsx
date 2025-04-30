@@ -16,7 +16,6 @@ export default function SearchForm() {
     economicBackground: "",
   });
 
-  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -52,7 +51,6 @@ export default function SearchForm() {
     <div className="search-form-container">
       <h2 className="search-form-title">טופס התאמת מלגות</h2>
 
-      {error && <div className="alert-error">{error}</div>}
 
       <form onSubmit={handleSubmit} className="search-form">
         <label>גיל</label>
