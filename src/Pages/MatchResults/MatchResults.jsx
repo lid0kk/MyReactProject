@@ -20,7 +20,6 @@ export default function MatchResults() {
           return;
         }
 
-        // שליפת נתוני המשתמש (מהשדות של הטופס)
         const userDoc = await getDoc(doc(db, "users", user.uid));
         if (!userDoc.exists()) {
           toast.error("לא נמצאו פרטי משתמש.");
@@ -30,14 +29,12 @@ export default function MatchResults() {
 
         const userData = userDoc.data();
 
-        // שליפת כל המלגות
         const snapshot = await getDocs(collection(db, "scholarships"));
         const allScholarships = snapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
         }));
 
-        // סינון המלגות לפי ההתאמה
         const filtered = allScholarships.filter((scholarship) => {
           return (
             (!scholarship.gender || scholarship.gender === userData.gender) &&
