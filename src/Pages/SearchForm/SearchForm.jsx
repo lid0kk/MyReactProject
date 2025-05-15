@@ -1,129 +1,105 @@
-import { useState } from "react";
-import { auth, db } from "../../Firebase/Firebase";
-import { doc, setDoc } from "firebase/firestore";
-import { useNavigate } from "react-router-dom";
-import { toast } from 'react-toastify';
-
-import "../SearchForm/SearchForm.css";
+import { useEffect, useState } from "react";
+import { db, auth } from "../../Firebase/Firebase";
+import { collection, getDocs, doc, getDoc } from "firebase/firestore";
+import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
+import "../MatchResults/MatchResults.css";
+import "../../Styles/global.css";
 
 export default function SearchForm() {
-  const [formData, setFormData] = useState({
-    age: "",
-    gender: "",
-    field: "",
-    institution: "",
-    familyStatus: "",
-    economicBackground: "",
-  });
+  const [scholarships, setScholarships] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const [error, setError] = useState("");
-  const navigate = useNavigate();
+  useEffect(() => {
+    const fetchScholarships = async () => {
+      try {
+        const user = auth.currentUser;
+        if (!user) {
+          toast.error("יש להתחבר כדי לראות מלגות מותאמות.");
+          setLoading(false);
+          return;
+        }
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+        const userDoc = await getDoc(doc(db, "users", user.uid));
+        if (!userDoc.exists()) {
+          toast.error("לא נמצאו פרטי פרופיל. אנא מלא אותם בדף עריכת פרופיל.");
+          setLoading(false);
+          return;
+        }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const user = auth.currentUser;
-    if (!user) {
-      toast.error("יש להתחבר כדי למלא את הטופס.");
-      return;
-    }
-  
-    try {
-      await setDoc(
-        doc(db, "users", user.uid),
-        {
-          ...formData,
-          uid: user.uid,
-          updatedAt: new Date(),
-        },
-        { merge: true }
-      );
-      toast.success("הנתונים נשמרו בהצלחה");
-      navigate("/results");
-    } catch (err) {
-      toast.error("שגיאה בשמירת הנתונים: " + err.message);
-    }
-  };
-  
+        const userData = userDoc.data();
+
+        const snapshot = await getDocs(collection(db, "scholarships"));
+        const allScholarships = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+
+        const filtered = allScholarships.filter((scholarship) => {
+          return (
+            (!scholarship.gender || scholarship.gender === userData.gender) &&
+            (!scholarship.field || scholarship.field === userData.field) &&
+            (!scholarship.economicBackground || scholarship.economicBackground === userData.economicBackground) &&
+            (!scholarship.familyStatus || scholarship.familyStatus === userData.familyStatus) &&
+            (!scholarship.institution || scholarship.institution === userData.institution)
+          );
+        });
+
+        setScholarships(filtered);
+      } catch (error) {
+        console.error("שגיאה בטעינת מלגות:", error);
+        toast.error("אירעה שגיאה בעת טעינת המלגות.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchScholarships();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="loading-wrapper">
+        <div className="spinner"></div>
+        <p className="loading-message">...טוען מלגות</p>
+      </div>
+    );
+  }
+
   return (
-    <div className="search-form-container">
-      <h2 className="search-form-title">טופס התאמת מלגות</h2>
+    <div className="match-results-container">
+      <h2 className="match-results-title">
+        נמצאו {scholarships.length} מלגות שמתאימות לפרופיל שלך
+      </h2>
 
-      {error && <div className="alert-error">{error}</div>}
+      {scholarships.length === 0 ? (
+        <p className="no-results-message">לא נמצאו מלגות שתואמות את הפרופיל שלך.</p>
+      ) : (
+        <div className="match-grid">
+          {scholarships.map((scholarship) => (
+            <div key={scholarship.id} className="scholarship-card">
+              <div className="card-content">
+                <h5>{scholarship.name}</h5>
+                <p>סכום: ₪{scholarship.amount}</p>
+                <p>
+                  מועד אחרון:{" "}
+                  {scholarship.deadline?.seconds
+                    ? new Date(scholarship.deadline.seconds * 1000).toLocaleDateString("he-IL")
+                    : ""}
+                </p>
+                <p>{scholarship.summary}</p>
+              </div>
 
-      <form onSubmit={handleSubmit} className="search-form">
-        <label>גיל</label>
-        <input
-          type="number"
-          name="age"
-          value={formData.age}
-          onChange={handleChange}
-          required
-        />
-
-        <label>מגדר</label>
-        <select
-          name="gender"
-          value={formData.gender}
-          onChange={handleChange}
-          required
-        >
-          <option value="">בחר</option>
-          <option value="male">זכר</option>
-          <option value="female">נקבה</option>
-          <option value="other">אחר</option>
-        </select>
-
-        <label>תחום לימוד</label>
-        <input
-          type="text"
-          name="field"
-          value={formData.field}
-          onChange={handleChange}
-          required
-        />
-
-        <label>מוסד לימודים</label>
-        <input
-          type="text"
-          name="institution"
-          value={formData.institution}
-          onChange={handleChange}
-          required
-        />
-
-        <label>מצב משפחתי</label>
-        <select
-          name="familyStatus"
-          value={formData.familyStatus}
-          onChange={handleChange}
-          required
-        >
-          <option value="">בחר</option>
-          <option value="single">רווק/ה</option>
-          <option value="married">נשוי/אה</option>
-        </select>
-
-        <label>רקע כלכלי</label>
-        <select
-          name="economicBackground"
-          value={formData.economicBackground}
-          onChange={handleChange}
-          required
-        >
-          <option value="">בחר</option>
-          <option value="low">חלש</option>
-          <option value="medium">בינוני</option>
-          <option value="high">גבוה</option>
-        </select>
-
-        <button type="submit" className="submit-btn">
-          מצא מלגות
-        </button>
-      </form>
+              <div className="card-actions">
+                <Link to={`/scholarship/${scholarship.id}`} className="btn-details">
+                  לפרטים
+                </Link>
+                <button className="btn-apply">הגש מועמדות</button>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

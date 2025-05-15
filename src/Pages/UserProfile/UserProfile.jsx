@@ -52,6 +52,7 @@ export default function UserProfile() {
       });
       toast.success("✅ הפרופיל עודכן בהצלחה!");
     } catch (error) {
+      console.log(error)
       toast.error("שגיאה בשמירת הנתונים");
     }
   };
