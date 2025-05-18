@@ -28,9 +28,9 @@ export default function LoginRegister() {
     try {
       await signInWithEmailAndPassword(auth, formData.email, formData.password);
       toast.success(" !התחברת בהצלחה ");
-      navigate("/search");
+      navigate("/profile");
     } catch (err) {
-      toast.error("שגיאה בהתחברות: " + err.message);
+      toast.error("שגיאה בהתחברות" );
     }
   };
 

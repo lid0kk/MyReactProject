@@ -17,14 +17,9 @@ export default function Home() {
       הדרך המהירה והפשוטה למצוא את המלגה שתפורה במיוחד עבורך — בהתאמה אישית לתחום הלימודים, המוסד האקדמי והרקע האישי שלך.   
       </p>
 
-      <Link to="/search" className="home-start-btn">
-         התחל התאמה 
-      </Link>
+ 
 
-      <div className="home-links">
-        <Link to="/help" className="home-link-btn"> עזרה </Link>
-        <Link to="/about" className="home-link-btn"> מידע כללי </Link>
-      </div>
+  
     </div>
   );
 }

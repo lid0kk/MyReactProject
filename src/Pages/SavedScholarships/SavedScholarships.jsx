@@ -1,30 +1,31 @@
 import { useEffect, useState } from "react";
 import { auth, db } from "../../Firebase/Firebase";
 import { useNavigate } from "react-router-dom";
-
 import {
   collection,
   getDocs,
   getDoc,
   doc,
+  deleteDoc,
 } from "firebase/firestore";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
-
+import { useAuthState } from "react-firebase-hooks/auth"; 
 import "../SavedScholarships/SavedScholarships.css";
 import "../../Styles/global.css";
 
 export default function SavedScholarships() {
   const [saved, setSaved] = useState([]);
   const [loading, setLoading] = useState(true);
-  const navigate = useNavigate();
+  const [user, userLoading] = useAuthState(auth); 
 
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchSaved = async () => {
-      const user = auth.currentUser;
+      if (userLoading) return; 
       if (!user) {
-        navigate('/login')
+        navigate("/login");
         return;
       }
 
@@ -53,16 +54,28 @@ export default function SavedScholarships() {
         setSaved(filtered);
       } catch (err) {
         console.error("שגיאה בטעינת מלגות שמורות:", err);
-
       } finally {
         setLoading(false);
       }
     };
 
     fetchSaved();
-  }, []);
+  }, [user, userLoading]);
 
-  if (loading) {
+  const handleDelete = async (id) => {
+    try {
+      if (!user) return;
+
+      await deleteDoc(doc(db, `users/${user.uid}/savedScholarships`, id));
+      setSaved((prev) => prev.filter((s) => s.id !== id));
+      toast.success("המלגה הוסרה מהרשימה שלך");
+    } catch (err) {
+      console.error("שגיאה במחיקה:", err);
+      toast.error("שגיאה במחיקת המלגה");
+    }
+  };
+
+  if (userLoading || loading) {
     return (
       <div className="loading-wrapper">
         <div className="spinner"></div>
@@ -91,12 +104,22 @@ export default function SavedScholarships() {
                   : ""}
               </p>
             </div>
-            <Link
-              to={`/scholarship/${s.scholarshipId}`}
-              className="saved-card-button"
-            >
-              מעבר לפרטי המלגה
-            </Link>
+
+            <div className="saved-card-actions">
+              <Link
+                to={`/scholarship/${s.scholarshipId}`}
+                className="saved-card-button"
+              >
+                מעבר לפרטי המלגה
+              </Link>
+              <button
+                className="delete-button"
+                onClick={() => handleDelete(s.id)}
+                title="מחק מלגה"
+              >
+                🗑️
+              </button>
+            </div>
           </div>
         ))}
       </div>

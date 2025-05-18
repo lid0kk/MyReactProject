@@ -44,7 +44,7 @@ export default function ScholarshipDetail() {
           savedAt: new Date(),
         }
       );
-      toast.success("המלגה נשמרה לדשבורד שלך!");
+      toast.success("!המלגה נשמרה לדשבורד שלך");
     } catch (err) {
       console.error("שגיאה בשמירה:", err);
       toast.error("אירעה שגיאה בשמירת המלגה");
