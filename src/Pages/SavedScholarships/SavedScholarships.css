@@ -1,0 +1,133 @@
+.saved-container {
+  direction: rtl;
+  padding: 2rem 1rem;
+  background-color: #f9fafb;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.saved-title {
+  text-align: center;
+  font-size: 2rem;
+  color: #0d6efd;
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+.saved-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 1100px;
+}
+
+.saved-card {
+  background: linear-gradient(145deg, #ffffff, #f1f1f1);
+  border: 2px solid #e0e0e0;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.07);
+  padding: 1.5rem;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s, border-color 0.2s, background-color 0.2s;
+  position: relative;
+}
+
+.saved-card:hover {
+  transform: translateY(-5px);
+  border-color: #0d6efd;
+}
+
+.saved-card-content h5 {
+  color: #0d6efd;
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.saved-card-content p {
+  margin: 0.3rem 0;
+  color: #444;
+  font-size: 1rem;
+}
+
+.saved-card-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.saved-card-button {
+  background-color: #0d6efd;
+  color: white;
+  text-align: center;
+  padding: 0.6rem 1rem;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: background-color 0.3s;
+}
+
+.saved-card-button:hover {
+  background-color: #0b5ed7;
+}
+
+.delete-button {
+  background: none;
+  border: 2px solid transparent;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #dc3545;
+  padding: 0.3rem 0.6rem;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.delete-button:hover {
+  background-color: #fff5f5;
+  border-color: #dc3545;
+  transform: scale(1.2);
+}
+
+.loading-message,
+.no-saved-message {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #777;
+  margin-top: 4rem;
+}
+
+@media (max-width: 600px) {
+  .saved-grid {
+    justify-content: center;
+  }
+
+  .saved-card {
+    max-width: 100%;
+  }
+
+  .saved-title {
+    font-size: 1.6rem;
+  }
+
+  .saved-card-content h5 {
+    font-size: 1.1rem;
+  }
+
+  .saved-card-content p {
+    font-size: 0.95rem;
+  }
+
+  .saved-card-button {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+
+  }
+}

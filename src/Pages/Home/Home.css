@@ -1,0 +1,154 @@
+.home-container {
+  background-image: url('../../assets/Pictures/background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+  min-height: 100dvh;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+  overflow: hidden;
+  direction: rtl;
+  text-align: center;
+}
+
+.home-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 0;
+}
+
+.home-container > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* לוגו */
+.home-logo {
+  width: 140px;
+  margin-bottom: 1.5rem;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15));
+}
+
+/* כותרת */
+.home-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+}
+
+.home-description {
+  font-size: 1.2rem;
+  color: #ffffff;
+  max-width: 600px;
+  margin-bottom: 2rem;
+  line-height: 1.8;
+  padding: 0 1rem;
+}
+
+.home-start-btn {
+  font-size: 1.1rem;
+  padding: 0.75rem 2rem;
+  border-radius: 12px;
+  background-color: #0d6efd;
+  color: white;
+  border: none;
+  text-decoration: none;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(13, 110, 253, 0.2);
+  transition: all 0.3s ease;
+
+  width: 280px;
+  max-width: 50%;
+  margin-bottom: 2rem;
+}
+
+.home-start-btn:hover {
+  background-color: #0b5ed7;
+  transform: translateY(-2px);
+}
+
+.home-links {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  max-width: 50%;
+}
+.mini-stats-container {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-top: 3rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  text-align: center;
+  max-width: 700px;
+  width: 100%;
+}
+
+.mini-stats-boxes {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.mini-stat-box {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #0d6efd;
+}
+
+.mini-pie-chart {
+  margin-top: 1rem;
+}
+
+.home-link-btn {
+  width: 280px;
+  max-width: 90%;
+  padding: 0.6rem 1.5rem;
+  border-radius: 10px;
+  border: 1px solid #dee2e6;
+  background-color: white;
+  color: #495057;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.home-link-btn:hover {
+  background-color: #e9f2ff;
+  color: #0d6efd;
+  border-color: #0d6efd;
+}
+
+/* מובייל */
+@media (max-width: 600px) {
+  .home-title {
+    font-size: 1.8rem;
+  }
+
+  .home-description {
+    font-size: 1rem;
+  }
+
+  .home-logo {
+    width: 110px;
+  }
+
+  .home-start-btn,
+  .home-link-btn {
+    font-size: 1rem;
+  }
+}
