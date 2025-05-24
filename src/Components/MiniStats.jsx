@@ -151,7 +151,7 @@ function MiniStats() {
                 />
                 <Tooltip />
                 <Legend />
-                <Bar dataKey="value" name="מספר הגשות" fill="#ff6b6b" radius={[10, 10, 0, 0]} />
+                <Bar dataKey="valued" name="מספר הגשות" fill="#ff6b6b" radius={[10, 10, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </div>
