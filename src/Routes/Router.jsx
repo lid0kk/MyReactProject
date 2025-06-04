@@ -10,7 +10,6 @@ import UserProfile from "../Pages/UserProfile/UserProfile";
 import AdminAnalytics from "../Pages/AdminAnalytics/AdminAnalytics";
 import Navbar from "../Components/Navbar";
 import ProtectedRoute from "../Components/ProtectedRoute";
-import SeedScholarships from "../Pages/Seedscholarship/Seedscholarship";
 import SavedScholarships from "../Pages/SavedScholarships/SavedScholarships";
 import About from "../Pages/About/About";
 import Help from "../Pages/Help/Help";
@@ -32,7 +31,6 @@ export default function AppRouter() {
         <Route path="/results" element={<ProtectedRoute><MatchResults /></ProtectedRoute>} />
         <Route path="/scholarship/:id" element={<ProtectedRoute><ScholarshipDetail /></ProtectedRoute>} />
         <Route path="/profile" element={<ProtectedRoute><UserProfile /></ProtectedRoute>} />
-        <Route path="/seed" element={<ProtectedRoute><SeedScholarships /></ProtectedRoute>} />
         <Route path="/my-scholarships" element={<SavedScholarships />} />
         <Route path="/admin" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>} />
         <Route path="/admin/add" element={<ProtectedRoute><AddScholarship /></ProtectedRoute>} />

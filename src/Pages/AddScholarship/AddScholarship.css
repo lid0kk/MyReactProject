@@ -14,6 +14,29 @@
     color: #0d6efd;
     margin-bottom: 2rem;
   }
+
+  .add-scholarship-form select {
+  width: 100%;
+  padding: 0.65rem 1rem;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  margin-bottom: 1.4rem;
+  background-color: #fff;
+  color: #333;
+  appearance: none; 
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5 8L10 13L15 8' stroke='%230d6efd' stroke-width='2'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: left 1rem center;
+  background-size: 1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.add-scholarship-form select:focus {
+  outline: none;
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.15);
+}
   
   .add-scholarship-form label {
     font-weight: 600;

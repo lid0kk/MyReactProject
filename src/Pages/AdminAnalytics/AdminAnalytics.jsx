@@ -3,17 +3,16 @@ import { collection, getDocs } from "firebase/firestore";
 import "../AdminAnalytics/AdminAnalytics.css";
 import { db } from "../../Firebase/Firebase";
 import {
-  LineChart,
-  Line,
+  BarChart,
+  Bar,
   XAxis,
   YAxis,
-  CartesianGrid,
   Tooltip,
   ResponsiveContainer,
-  Legend,
   PieChart,
   Pie,
-  Cell
+  Cell,
+  LabelList
 } from "recharts";
 
 export default function AdminAnalytics() {
@@ -22,6 +21,13 @@ export default function AdminAnalytics() {
   const [institutions, setInstitutions] = useState({});
   const [fields, setFields] = useState({});
   const [genders, setGenders] = useState({});
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -57,7 +63,6 @@ export default function AdminAnalytics() {
       female: "נקבה",
       other: "אחר",
     };
-
     const translated = {};
     for (const key in obj) {
       const translatedKey = map[key] || key;
@@ -74,7 +79,7 @@ export default function AdminAnalytics() {
   return (
     <div className="admin-stats-container">
       <div className="admin-stats-header centered">
-        <h2 className="admin-stats-title">📊 לוח בקרה – סטטיסטיקות מערכת</h2>
+        <h2 className="admin-stats-title"> לוח בקרה – סטטיסטיקות מערכת </h2>
       </div>
 
       <div className="stat-cards modern-layout">
@@ -92,61 +97,72 @@ export default function AdminAnalytics() {
         ))}
       </div>
 
-      {[institutions, fields].map((dataset, index) => (
-        <div key={index} className="chart-section">
-          <h4 className="chart-title">
-            {index === 0 && "📚 מוסדות לימוד – גרף קווים"}
-            {index === 1 && "📈 תחומי לימוד – גרף קווים"}
-          </h4>
-          <ResponsiveContainer width="100%" height={300}>
-            <LineChart
-              data={toChartData(dataset)}
-              margin={{ top: 20, right: 40, left: 10, bottom: 60 }}
-            >
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis
-                dataKey="name"
-                tick={{ fontSize: 12, dy: 35, dx: -10 }}
-                angle={-25}
-                interval={0}
-                textAnchor="end"
-                height={90}
-              />
-              <YAxis tick={{ fontSize: 12, dx: -10 }} />
-              <Tooltip />
-              <Line
-                type="monotone"
-                dataKey="value"
-                stroke={index === 0 ? "#0d6efd" : "#198754"}
-                strokeWidth={3}
-                dot={{ r: 4 }}
-                activeDot={{ r: 6 }}
-              />
-            </LineChart>
-          </ResponsiveContainer>
-        </div>
-      ))}
+      {[institutions, fields].map((dataset, index) => {
+        const chartData = toChartData(dataset);
+
+        return (
+          <div key={index} className="chart-section">
+            <h4 className="chart-title">
+              {index === 0 && ` מוסדות לימוד – גרף עמודות`}
+              {index === 1 && ` תחומי לימוד – גרף עמודות`}
+            </h4>
+            <ResponsiveContainer width="100%" height={300}>
+              <BarChart data={chartData} margin={{ top: 20, right: 20, left: 10, bottom: 40 }}  barCategoryGap={isMobile ? '12%' : "30%"}>
+                <XAxis
+                  dataKey="name"
+                  tick={{ fontSize: isMobile ? 10 : 12, angle: isMobile ? -30 : 0, dx: -5, dy: 15 }}
+                  interval={0}
+                  height={80}
+                />
+                <YAxis tick={{ fontSize: isMobile ? 12 : 15  , dx: -30}} />
+                <Tooltip />
+                <Bar dataKey="value"    fill={index === 0 ? "#0d6efd" : "#198754"}>
+                  
+                  <LabelList dataKey="value" position="top" fontSize={10} />
+                </Bar>
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        );
+      })}
 
       {Object.keys(genders).length > 0 && (
         <div className="chart-section">
-          <h4 className="chart-title">🎂 פילוח מגדרי – גרף עוגה</h4>
+          <h4 className="chart-title"> פילוח מגדרי – גרף עוגה</h4>
           <ResponsiveContainer width="100%" height={300}>
             <PieChart>
-              <Pie
-                data={toChartData(translateGenders(genders))}
-                dataKey="value"
-                nameKey="name"
-                cx="50%"
-                cy="50%"
-                outerRadius={90}
-                label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+            <Pie
+          data={toChartData(translateGenders(genders))}
+          dataKey="value"
+          nameKey="name"
+          cx="50%"
+          cy="50%"
+          outerRadius={isMobile ? 100 : 120}
+          labelLine={false}
+          label={({ cx, cy, midAngle, innerRadius, outerRadius, percent, name }) => {
+            const RADIAN = Math.PI / 180;
+            const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+            const x = cx + radius * Math.cos(-midAngle * RADIAN);
+            const y = cy + radius * Math.sin(-midAngle * RADIAN);
+            return (
+              <text
+                x={x}
+                y={y}
+                fill="#fff"
+                textAnchor="middle"
+                dominantBaseline="central"
+                fontSize={isMobile ? 10 : 12}
               >
-                {toChartData(translateGenders(genders)).map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                ))}
-              </Pie>
+                {`${name} ${(percent * 100).toFixed(0)}%`}
+              </text>
+            );
+          }}
+        >
+          {toChartData(translateGenders(genders)).map((entry, index) => (
+            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+          ))}
+        </Pie>
               <Tooltip />
-              <Legend />
             </PieChart>
           </ResponsiveContainer>
         </div>

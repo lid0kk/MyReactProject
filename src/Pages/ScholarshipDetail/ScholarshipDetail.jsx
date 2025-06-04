@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { db, auth } from "../../Firebase/Firebase";
@@ -8,6 +8,7 @@ import "../ScholarshipDetail/ScholarshipDetail.css";
 
 export default function ScholarshipDetail() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [scholarship, setScholarship] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -70,9 +71,12 @@ export default function ScholarshipDetail() {
         )}
 
         <div className="scholarship-actions">
-          <button className="btn-apply">הגש מועמדות למלגה</button>
+          <button className="btn-return" onClick={() => navigate('/search')}>
+             חזרה
+          </button>
+
           <button className="btn-save" onClick={handleSave}>
-            שמור לדשבורד שלי
+             שמור לדשבורד שלי
           </button>
         </div>
       </div>

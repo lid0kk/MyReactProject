@@ -22,6 +22,7 @@ export default function Help() {
       <div className="faq-item">
         <h4>איך יוצרים קשר עם התמיכה?</h4>
         <p>
+      
           ניתן לשלוח לנו מייל לכתובת <a href="mailto:support@scholarshipmatch.co.il">support@scholarshipmatch.co.il</a>.
         </p>
       </div>
