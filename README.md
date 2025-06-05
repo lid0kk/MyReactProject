@@ -2,11 +2,11 @@
 
 A modern scholarship matching platform that helps students easily find scholarships that suit their personal profile.
 
-🌐 [Live Demo on Firebase Hosting](https://schoolrship-132e8.web.app/home)
+ [Live Demo on Firebase Hosting](https://schoolrship-132e8.web.app/home)
 
 ---
 
-## 📌 Project Overview
+##  Project Overview
 
 Scholarship Match is a web application built with **React (Vite)** and **Firebase** that allows students to:
 - Fill out a smart matching form
@@ -23,9 +23,9 @@ Admins can:
 
 ---
 
-## 🚀 Features
+##  Features
 
-### 👤 For Students
+###  For Students
 - Register and login (Firebase Auth)
 - Fill in personal information
 - Get scholarship matches
@@ -33,13 +33,13 @@ Admins can:
 - Edit personal profile
 - Apply for scholarships
 
-### 🛠️ For Admins
+###  For Admins
 - Dashboard with full CRUD for scholarships
 - User management (with roles)
 - Analytics: gender, fields, institutions
 - Add mock data for testing
 
-### 📊 Analytics Dashboard
+###  Analytics Dashboard
 - Registered users count
 - Active scholarships
 - Bar charts by:
@@ -49,7 +49,7 @@ Admins can:
 
 ---
 
-## 🧰 Tech Stack
+##  Tech Stack
 
 | Tech        | Description |
 |-------------|-------------|
