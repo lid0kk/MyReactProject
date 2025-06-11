@@ -11,8 +11,6 @@ import AdminAnalytics from "../Pages/AdminAnalytics/AdminAnalytics";
 import Navbar from "../Components/Navbar";
 import ProtectedRoute from "../Components/ProtectedRoute";
 import SavedScholarships from "../Pages/SavedScholarships/SavedScholarships";
-import About from "../Pages/About/About";
-import Help from "../Pages/Help/Help";
 import NotFound from "../Pages/NotFound/NotFound";
 import SearchForm from "../Pages/SearchForm/SearchForm";
 
@@ -36,8 +34,6 @@ export default function AppRouter() {
         <Route path="/admin/add" element={<ProtectedRoute><AddScholarship /></ProtectedRoute>} />
         <Route path="/admin/edit/:id" element={<ProtectedRoute><EditScholarship /></ProtectedRoute>} />
         <Route path="/admin/dashboard" element={<ProtectedRoute><AdminAnalytics /></ProtectedRoute>} />
-        <Route path="/about" element={<About />} />
-        <Route path="/help" element={<Help />} />
 
       </Routes>
     </Router>

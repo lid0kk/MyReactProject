@@ -90,7 +90,6 @@
   text-align: center;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   .stat-box {
     flex: 1 1 100%;
