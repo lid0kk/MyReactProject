@@ -62,8 +62,8 @@ export default function Navbar() {
           <li><Link className={isActive("/home") ? "active" : ""} to="/home" onClick={handleLinkClick}>🏠 דף הבית</Link></li>
           {user && (
             <>
-              <li><Link className={isActive("/search") ? "active" : ""} to="/search" onClick={handleLinkClick}>🔍 חיפוש</Link></li>
-              <li><Link className={isActive("/profile") ? "active" : ""} to="/profile" onClick={handleLinkClick}>👤 פרופיל</Link></li>
+                          <li><Link className={isActive("/profile") ? "active" : ""} to="/profile" onClick={handleLinkClick}>👤 פרופיל</Link></li>
+              <li><Link className={isActive("/search") ? "active" : ""} to="/search" onClick={handleLinkClick}>🔍 תוצאות התאמה</Link></li>
               <li><Link className={isActive("/my-scholarships") ? "active" : ""} to="/my-scholarships" onClick={handleLinkClick}>💾 מלגות ששמרתי</Link></li>
               {isAdmin && (
                 <>
